@@ -12,7 +12,7 @@ Ein einfaches Tool zum Herunterladen von YouTube-Videos als MP4 oder MP3 mit ein
 
 1. Klone das Repository:
    ```bash
-   git clone https://github.com/dein-benutzername/youtube-downloader.git
+   git clone [https://github.com/dein-benutzername/youtube-downloader.git](https://github.com/thedude89/theTube_Downloader.git)
    cd youtube-downloader
    ```
 2. Erstelle eine virtuelle Umgebung und aktiviere sie:
