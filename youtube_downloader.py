@@ -8,25 +8,26 @@ from pathlib import Path
 def download_video(url, file_type):
     try:
         yt = YouTube(url, on_progress_callback=on_progress)
+        output_path = Path.home() / "Downloads"
+        
         if file_type == "mp4":
             stream = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first()
-            output_path = Path.home() / "Downloads"
             stream.download(output_path=output_path)
             messagebox.showinfo("Erfolg", "Video wurde erfolgreich heruntergeladen!")
         elif file_type == "mp3":
             stream = yt.streams.filter(only_audio=True).first()
-            output_path = Path.home() / "Downloads"
             out_file = stream.download(output_path=output_path)
             base, ext = os.path.splitext(out_file)
             new_file = base + '.mp3'
             
-            # Verwenden von moviepy zur Umwandlung in MP3
-            clip = mp.AudioFileClip(out_file)
-            clip.write_audiofile(new_file)
-            clip.close()
-            
-            # Entfernen der ursprünglichen Datei
-            os.remove(out_file)
+            try:
+                clip = mp.AudioFileClip(out_file)
+                clip.write_audiofile(new_file)
+                clip.close()
+                os.remove(out_file)
+            except Exception as e:
+                messagebox.showerror("Fehler", f"Audio-Konvertierungsfehler: {str(e)}")
+                return
             
             messagebox.showinfo("Erfolg", "Audio wurde erfolgreich heruntergeladen!")
     except Exception as e:
