@@ -33,6 +33,14 @@ Ein einfaches Tool zum Herunterladen von YouTube-Videos als MP4 oder MP3 mit ein
 - Skript ausführen und Popup verwenden
 - Andwendung ausführen und Popup verwenden
 ## Anwendung
-Anwendung befindet sich im Repository.
+Um eine Anwendung zu machen, muss zuertst Windowssicherheit ausgeschalten werden. 
+Man muss sicherstellen, dass man PyInstaller auf dem Gerät heruntergeladen hat. 
+```bash
+pip install pyinstaller
+```
+Dann muss man folgenden Befehl ausführen
+```bash
+pyinstaller --onefile youtube_downloader.py
+```
 ## Lizenz
 Dieses Projekt steht unter der MIT Lizenz
